@@ -28,8 +28,9 @@ const garbled = (len = 16) => {
 };
 
 const Index = ({
-  stroks = [],
-  local  = 'zh'
+  stroks   = [],
+  local    = 'zh',
+  onChange = () => {}
 }) => {
 
   const today = [ Number(dayjs().format('YYYY')), Number(dayjs().format('MM')), Number(dayjs().format('DD')) ];
@@ -61,11 +62,18 @@ const Index = ({
   };
 
   const handleStrok = ( formObj ) => {
+    let stroks = [];
     if( stateFormType=='add' ){
-      setStroks( [...stateStroks, { ...formObj, strok_id: garbled(128) }] );
+      stroks = [...stateStroks, { ...formObj, strok_id: garbled(128) }];
     }else if( stateFormType=='update' ){
-      setStroks( stateStroks.map( item => ( item.strok_id==formObj.strok_id? formObj:item)) );
+      stroks = stateStroks.map( item => ( item.strok_id==formObj.strok_id? formObj:item));
     }
+    onChange({
+      actionType      : stateFormType,
+      [stateFormType] : formObj,
+      stroks          : stroks
+    });
+    setStroks(stroks);
     setPopupDisplay(false);
   }
 
@@ -139,8 +147,9 @@ const Index = ({
 }
 
 Index.propTypes = {
-  stroks : PropTypes.array,
-  local  : PropTypes.string
+  stroks   : PropTypes.array,
+  local    : PropTypes.string,
+  onChange : PropTypes.func
 }
 
 export default Index;

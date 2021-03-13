@@ -29,11 +29,14 @@
 
   <Calendar
     stroks = {strokslist}
+    local  = "en"
+    onChange = { stroks => console.log(stroks) }
   />
 ```
 
 ## Api
-
-| Api                 | type              | method                                           |
-| ------------------- | ----------------- | ------------------------------------------------ |
-| stroks              | Array             | 行程列表                                          |
+| Api                 | type              | default | method                                           |
+| ------------------- | ----------------- | ------- | ------------------------------------------------ |
+| stroks              | Array             | null    | 行程列表                                          |
+| local               | string            | zh      | 語言：zh (華語) / en (英文)                        |
+| onChange            | function          | null    | 回傳結果 { actionType: "", [actionType]: {}, stroks: [] }

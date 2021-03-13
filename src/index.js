@@ -20,7 +20,9 @@ const Index = ({
 
     return(
         <Calendar 
-            stroks = {stateStroks}
+            local    = {'zh'}
+            stroks   = {stateStroks}
+            onChange = { stroks => console.log(stroks) }
         />
     );
 }
