@@ -9,7 +9,7 @@
     "start": "NODE_ENV=development webpack-dev-server --colors --inline --content-base --history-api-fallback",
     "dev": "NODE_ENV=development webpack-dev-server --colors --inline --content-base --history-api-fallback",
     "build": "NODE_ENV=development webpack --config webpack.config.js",
-    "common": "NODE_ENV=production webpack --config webpack.config.js"
+    "commonjs": "NODE_MODE=common NODE_ENV=production webpack --config webpack.config.js"
   },
   "keywords": ["React", "stroks", "calendar", "stroks calendar", "react-calendar", "react calendar"],
   "dependencies": {

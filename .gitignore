@@ -10,6 +10,7 @@
 
 # production
 /build
+/commonjs
 
 # misc
 .DS_Store

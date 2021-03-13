@@ -8,11 +8,8 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const NODE_ENV= process.env.NODE_ENV || 'development';
-
-const contextFilePath= NODE_ENV=="development"? "./":"./modules/calendar";
-const libraryTargetType= NODE_ENV=="development"? "umd":"commonjs2";
-const outputFilePath= NODE_ENV=="development"? "./docs":"./commonjs";
+const NODE_ENV  = process.env.NODE_ENV  || 'production';
+const NODE_MODE = process.env.NODE_MODE || 'nomal';
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template  : `${__dirname}/src/index.html`,
@@ -22,12 +19,13 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 
 const config = {
   mode: NODE_ENV,
-  context: path.join(__dirname, contextFilePath ),
-  entry: ['@babel/polyfill', './src/index.js'],
+  ...NODE_MODE=="common" && {context: path.join(__dirname, `/src/modules/calendar` )},
+  entry: ['@babel/polyfill', NODE_MODE=="nomal"? "./src/index.js":"./index.js"],
   output: {
-    path: path.resolve(__dirname, outputFilePath),
-    filename: 'bundle.js',
-    libraryTarget: libraryTargetType
+    path: path.resolve(__dirname, NODE_MODE=="nomal"? './docs':'./commonjs'),
+    library: "BrowserRouter",
+    filename: './index.js',
+    libraryTarget: NODE_MODE=="nomal"? "umd":"commonjs2"
   },
   module: {
     rules: [
