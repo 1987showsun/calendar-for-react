@@ -1,9 +1,9 @@
 {
-  "name": "react-player-beta",
-  "version": "1.0.3",
+  "name": "react-stroks-calendar",
+  "version": "1.0.0",
   "main": "commonjs/index.js",
-  "description": "React player",
-  "author": "showsunli",
+  "description": "React stroks calendar",
+  "author": "Sun",
   "license": "ISC",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --colors --inline --content-base --history-api-fallback",
@@ -11,7 +11,7 @@
     "build": "NODE_ENV=development webpack --config webpack.config.js",
     "common": "NODE_ENV=production webpack --config webpack.config.js"
   },
-  "keywords": [],
+  "keywords": ["React", "stroks", "calendar", "stroks calendar", "react-calendar", "react calendar"],
   "dependencies": {
     "babel-loader": "^8.2.2",
     "dayjs": "^1.10.4",
@@ -43,6 +43,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "engines": {
-    "node": "8.12.0"
+    "node": "14.9.0"
   }
 }

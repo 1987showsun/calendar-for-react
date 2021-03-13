@@ -1,49 +1,39 @@
-# Video Play component to React
-
-## Description
-The player supports responsive and mobile devices
+# 行事曆 Calendar for React
 
 ## NPM
 ```js
-npm i react-player-beta
+  npm i react-stroks-calendar
 ```
 
 ## Demo
-[Demo](https://1987showsun.github.io/video-component-by-React-dev/index.html)
+[Demo](https://1987showsun.github.io/calendar-for-react/index.html)
 
-![Demo1](https://s3-ap-northeast-1.amazonaws.com/showtest/Users/showsun/player+git+img/player.jpg)
-
-## data
+## 行程 Stroks json list
 ```json
   [
     {
-      "id"      : "1",
-      "title"   : "茄子蛋EggPlantEgg - 浪流連 Waves Wandering (Official Music Video)",
-      "src"     : "./assets/file/videoplayback1.mp4",
-      "poster"  : "https://i.ytimg.com/vi/3Y0Ut5ozaKs/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDlohyjxrPwOpwJU1i2ipVms3wYJQ"
+      "start"  : 1614402000000,   // 開始時間（毫秒）
+      "end"    : 1614407400000,   // 結束時間（毫秒）
+      "title"  : "行程標題",        // 行程標題
+      "address": "地址",           // 地址
+      "content": "行程敘述",       // 行程敘述
+      "level"  : 1,               // 層級 0: 高, 1: 一般, 2: 低, 1為起始值
+      "tags"   : []               // Hash tag標籤
     }
   ]
 ```
-id       : render item key <br/>
-title    : playing video title <br/>
-src      : video file path/src <br/>
-poster   : video player init main image <br/>
 
-## Use
+## 使用方式
 ```js
-  <Video
-    date = {"video list Object"} 
-    menu = {{
-      "switch" : false / true,
-      "title"  : "Menu head text"
-    }}
+  import Calendar from 'react-stroks-calendar';
+
+  <Calendar
+    stroks = {strokslist}
   />
 ```
 
 ## Api
 
-| Api                 | type              | method                                                               |
-| ------------------- | ----------------- | -------------------------------------------------------------------- |
-| data                | Object            | Object keys:id,title,src,poster                                      |
-| menu                | Object            | Object keys: swtch: fslae/true(init:false),titile : "Menu head text" |
-| initSelectedPlay    | number            | initSelectedPlay = {"1,2,3,...."}                                    |
+| Api                 | type              | method                                           |
+| ------------------- | ----------------- | ------------------------------------------------ |
+| stroks              | Array             | 行程列表                                          |
