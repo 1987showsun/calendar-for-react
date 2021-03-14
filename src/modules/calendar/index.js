@@ -28,6 +28,7 @@ const garbled = (len = 16) => {
 };
 
 const Index = ({
+  mode     = [],
   stroks   = [],
   local    = 'zh',
   onChange = () => {}
@@ -138,6 +139,7 @@ const Index = ({
         onHandleOpenPopup    = {(status) => setPopupDisplay(status)}
       >
         <Form 
+          mode               = { mode }
           defaultStrok       = { stateSelectedStrok }
           onHandleSubmit     = { handleStrok.bind(this) }
         />
@@ -147,6 +149,7 @@ const Index = ({
 }
 
 Index.propTypes = {
+  mode     : PropTypes.array,
   stroks   : PropTypes.array,
   local    : PropTypes.string,
   onChange : PropTypes.func

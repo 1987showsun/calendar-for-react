@@ -32,6 +32,7 @@ const initalForm = {
 };
 
 const Index = ({
+    mode           = [],
     defaultStrok   = {},
     onHandleSubmit = () => {}
 }) => {
@@ -73,6 +74,7 @@ const Index = ({
                 <FormItemsLabel>* Start date :</FormItemsLabel>
                 <FormItemsContainer>
                     <DatePicker 
+                        mode         = {mode}
                         defaultValue = {start}
                         required     = {required.includes('start')}
                         onChange     = { date => setStart(date.ms)}
@@ -84,6 +86,7 @@ const Index = ({
                 <FormItemsLabel>* End date :</FormItemsLabel>
                 <FormItemsContainer>
                     <DatePicker 
+                        mode         = {mode}
                         defaultValue = {end}
                         required     = {required.includes('end')}
                         onChange     = { date => setEnd(date.ms)}
@@ -151,6 +154,7 @@ const Index = ({
 }
 
 Index.prototype = {
+    mode           : PropTypes.array,
     defaultStrok   : PropTypes.object,
     onHandleSubmit : PropTypes.func
 }

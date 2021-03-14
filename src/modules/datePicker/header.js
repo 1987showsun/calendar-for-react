@@ -28,7 +28,7 @@ const Header = ({
             <div className="show-current-date">
                 <span onClick={onHandleContainerType.bind(this,'year')}>{dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('YYYY')}</span>
                 <span>/</span>
-                <span onClick={onHandleContainerType.bind(this,'year')}>{dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('MM')}</span>
+                <span onClick={onHandleContainerType.bind(this,'month')}>{dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('MM')}</span>
             </div>
             <CalendarArrowStyle 
                 type    = "button"

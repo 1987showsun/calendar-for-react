@@ -228,3 +228,72 @@ export const TimeArrowBlock = styled.div`
         }
     }
 `;
+
+export const YearItemStyle = styled.div`
+    width: calc( 100% / 5 );
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    font-size: .9rem;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    &:nth-child(5n+5){
+        border-right: 0;
+    }
+    &:nth-last-child(-n+5){
+        border-bottom: 0;
+    }
+    &[data-selected="true"]{
+        color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+    }
+    &[data-current="true"]{        
+        .mark{
+            background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+        }
+    }
+`;
+
+export const MonthItemStyle = styled.div`
+    width: calc( 100% / 3 );
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    font-size: .9rem;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    &:nth-child(3n+3){
+        border-right: 0;
+    }
+    &:nth-last-child(-n+3){
+        border-bottom: 0;
+    }
+    &:hover{
+        background-color: #eee;
+    }
+    &[data-selected="true"]{
+        color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+    }
+    &[data-current="true"]{        
+        .mark{
+            background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+        }
+    }
+`;
+
+export const MarkStyle = styled.span`
+    width: 5px;
+    height: 5px;
+    border-radius: 100px;
+    display: inline-flex;
+    margin-left: 2px;
+`;

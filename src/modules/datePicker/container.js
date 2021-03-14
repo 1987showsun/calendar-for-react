@@ -9,28 +9,79 @@ import toArray from 'dayjs/plugin/toArray';
 
 // Stylesheets
 import {
+    YearItemStyle,
     ContainerWrapStyle,
+    MonthItemStyle,
     DaysWrapStyle,
     DaysTitleItemStyle,
     DaysItemStyle,
-    DateStyle
+    DateStyle,
+    MarkStyle
 } from "./stylesheets/style";
 
 const YearContainer = ({
-    onHandleContainerType = () => {}
+    propsCurrentYear   = 0,
+    propsRangeYear     = [],
+    onHandleSetYear    = () => {},
 }) => {
-    return(
-        <>
-        </>
+    const renderYearRange = useCallback(() => {
+        const yearArray = [];
+        const startYaer = propsRangeYear[0];
+        const endYear   = propsRangeYear[1];
+        for( let i=startYaer ; i<=endYear ; i++ ){
+            yearArray.push(i);
+        }
+        return yearArray.map(item => (
+            <YearItemStyle  
+                key              = {item}
+                onClick          = {onHandleSetYear.bind(this, item)}
+                data-selected    = {dayjs(`${propsCurrentYear}`).format('YYYY')===String(item)}
+                data-current     = {dayjs().format('YYYY')===String(item)}
+            >
+                {item}
+                {
+                    dayjs().format('YYYY')===String(item) && 
+                        <MarkStyle className= "mark" />
+                }
+            </YearItemStyle>
+        ));
+    },[propsRangeYear]);
+
+    return (
+        <DaysWrapStyle>
+            {renderYearRange()}
+        </DaysWrapStyle>
     );
 }
 
 const MonthContainer = ({
-    onHandleContainerType = () => {}
+    propsCurrentYear   = 0,
+    propsCurrentMonth  = 0,
+    onHandleSetMonth   = () => {}
 }) => {
-    return(
-        <>
-        </>
+
+    const Month = {
+        "en": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+        "zh": ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+    }
+
+    return (
+        <DaysWrapStyle>
+            { Month['en'].map((item, i) => (
+                <MonthItemStyle
+                    key            = {item}
+                    data-selected  = {dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
+                    data-current   = {dayjs().format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
+                    onClick        = {onHandleSetMonth.bind(this, i)}
+                >
+                    {item}
+                    {
+                        dayjs().format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM') && 
+                            <MarkStyle className="mark" />
+                    }
+                </MonthItemStyle>
+            ))}
+        </DaysWrapStyle>
     );
 }
 
@@ -109,7 +160,6 @@ const Container = ({
     onHandleSetYear       = () => {},
     onHandleSetMonth      = () => {},
     onHandleSelectedDate  = () => {},
-    onHandleContainerType = () => {},
     onHandleSelectedStroke= () => {}
 }) => {
 
@@ -122,7 +172,6 @@ const Container = ({
                         propsCurrentYear       = {propsCurrentYear}
                         propsCurrentMonth      = {propsCurrentMonth}
                         onHandleSetYear        = {onHandleSetYear}
-                        onHandleContainerType  = {onHandleContainerType}
                     />
                 );
 
@@ -132,7 +181,6 @@ const Container = ({
                         propsCurrentYear       = {propsCurrentYear}
                         propsCurrentMonth      = {propsCurrentMonth}
                         onHandleSetMonth       = {onHandleSetMonth}
-                        onHandleContainerType  = {onHandleContainerType}
                     />
                 );
             
@@ -162,13 +210,16 @@ const Container = ({
 }
 
 Container.prototype = {
-    propsContainerType   : PropTypes.string,
-    propsSelectedDate    : PropTypes.array,
-    propsCurrentYear     : PropTypes.number,
-    propsCurrentMonth    : PropTypes.number,
-    propsCurrentDay      : PropTypes.number,
-    propsRangeYear       : PropTypes.array,
-    onHandleSelectedDate : PropTypes.func
+    propsContainerType     : PropTypes.string,
+    propsCurrentYear       : PropTypes.number,
+    propsCurrentMonth      : PropTypes.number,
+    propsCurrentDay        : PropTypes.number,
+    propsRangeYear         : PropTypes.array,
+    propsSelectedDate      : PropTypes.array,
+    onHandleSetYear        : PropTypes.func,
+    onHandleSetMonth       : PropTypes.func,
+    onHandleSelectedDate   : PropTypes.func,
+    onHandleSelectedStroke : PropTypes.func
 }
 
 export default Container;

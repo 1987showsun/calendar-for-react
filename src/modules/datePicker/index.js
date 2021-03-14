@@ -17,7 +17,7 @@ import {
 } from "./stylesheets/style";
 
 const Index = ({
-    mode         = ['date','time'],
+    mode         = [],
     defaultValue = "",
     disabledTime = "",
     onChange     = () => {}
@@ -111,6 +111,8 @@ const Index = ({
                 propsSelectedHour    = {stateCurrentHour}
                 propsSelectedMinute  = {stateCurrentMinute}
                 propsSelectedSecond  = {stateCurrentSecond}
+                onHandleSetYear      = { val => setCurrentYear(val)}
+                onHandleSetMonth     = { val => setCurrentMonth(val)}
                 onHandleSelectedDate = {(selectedDate) => {
                     setCurrentYear( selectedDate[0] );
                     setCurrentMonth( selectedDate[1] );

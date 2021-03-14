@@ -12,13 +12,13 @@
 ```json
   [
     {
-      "start"  : 1614402000000,   // 開始時間（毫秒）
-      "end"    : 1614407400000,   // 結束時間（毫秒）
-      "title"  : "行程標題",        // 行程標題
-      "address": "地址",           // 地址
-      "content": "行程敘述",       // 行程敘述
-      "level"  : 1,               // 層級 0: 高, 1: 一般, 2: 低, 1為起始值
-      "tags"   : []               // Hash tag標籤
+      "start"  : 1614402000000, 開始時間（毫秒）
+      "end"    : 1614407400000, 結束時間（毫秒）
+      "title"  : "",  行程標題
+      "address": "", 地址
+      "content": "", 行程敘述
+      "level"  : 1, 層級 0: 高, 1: 一般, 2: 低, 1為起始值
+      "tags"   : [] Hash tag標籤
     }
   ]
 ```
@@ -28,8 +28,9 @@
   import Calendar from 'react-stroks-calendar';
 
   <Calendar
-    stroks = {strokslist}
-    local  = "en"
+    mode     = {["date","time"]}
+    stroks   = {strokslist}
+    local    = "en"
     onChange = { stroks => console.log(stroks) }
   />
 ```
@@ -37,6 +38,7 @@
 ## Api
 | Api                 | type              | default | method                                           |
 | ------------------- | ----------------- | ------- | ------------------------------------------------ |
+| mode                | Array             | date    | form datePicker status: date, time               | 
 | stroks              | Array             | null    | 行程列表                                          |
 | local               | string            | zh      | 語言：zh (華語) / en (英文)                        |
 | onChange            | function          | null    | 回傳結果 { actionType: "", [actionType]: {}, stroks: [] }

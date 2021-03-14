@@ -26,6 +26,8 @@ const Calendar = ({
     propsSelectedHour    = 0,
     propsSelectedMinute  = 0,
     propsSelectedSecond  = 0,
+    onHandleSetYear      = () => {},
+    onHandleSetMonth     = () => {},
     onHandleSelectedDate = () => {},
     onHandleSelectedTime = () => {}
 }) => {
@@ -117,6 +119,14 @@ const Calendar = ({
                             propsCurrentDay       = {stateCurrentDay}
                             propsRangeYear        = {stateRangeYear}
                             propsContainerType    = {stateContainerType}
+                            onHandleSetYear       = { val => {
+                                onHandleSetYear(val);
+                                setContainerType('month');
+                            }}
+                            onHandleSetMonth      = { val => {
+                                onHandleSetMonth(val);
+                                setContainerType('date');
+                            }}
                             onHandleSelectedDate  = {onHandleSelectedDate}
                         />
                     </>
@@ -143,6 +153,8 @@ Calendar.propTypes = {
     propsSelectedHour     : PropTypes.number,
     propsSelectedMinute   : PropTypes.number,
     propsSelectedSecond   : PropTypes.number,
+    onHandleSetYear       : PropTypes.func,
+    onHandleSetMonth      : PropTypes.func,
     onHandleSelectedDate  : PropTypes.func,
     onHandleSelectedTime  : PropTypes.func
 }
