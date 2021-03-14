@@ -23,6 +23,7 @@ import {
 } from "./style/container";
 
 const YearContainer = ({
+    propsCurrentYear   = 0,
     propsStrokes       = [],
     propsRangeYear     = [],
     onHandleSetYear    = () => {}
@@ -39,15 +40,17 @@ const YearContainer = ({
             <YearItemStyle  
                 key              = {item}
                 onClick          = {onHandleSetYear.bind(this, item)}
-                data-active      = {dayjs().format('YYYY')===String(item)}
+                data-selected    = {dayjs(`${propsCurrentYear}`).format('YYYY')===String(item)}
+                data-current     = {dayjs().format('YYYY')===String(item)}
             >
                 {item}
                 {
                     propsStrokes.some(strokeItem => (
                         dayjs(strokeItem.start).format('YYYY')==String(item) || dayjs(strokeItem.end).format('YYYY')==String(item)
                     )) &&
-                        <MarkStyle />
+                        <MarkStyle className="have-stroke"/>
                 }
+                { dayjs().format('YYYY')===String(item) && <MarkStyle className="current-set"/> }
             </YearItemStyle>
         ));
     },[propsStrokes, propsRangeYear]);
@@ -62,6 +65,7 @@ const YearContainer = ({
 const MonthContainer = ({
     propsStrokes       = [],
     propsCurrentYear   = 0,
+    propsCurrentMonth  = 0,
     onHandleSetMonth   = () => {}
 }) => {
 
@@ -74,9 +78,10 @@ const MonthContainer = ({
         <DaysWrapStyle>
             { Month['en'].map((item, i) => (
                 <MonthItemStyle 
-                    key         = {item}
-                    data-active = {dayjs().format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
-                    onClick     = {onHandleSetMonth.bind(this, i+1)}
+                    key              = {item}
+                    data-selected    = {dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
+                    data-current     = {dayjs().format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
+                    onClick          = {onHandleSetMonth.bind(this, i+1)}
                 >
                     {item}
                     {
@@ -85,8 +90,9 @@ const MonthContainer = ({
                             return (dayjs(start).format('YYYY/MM')==dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM') || dayjs(end).format('YYYY/MM')==dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM'))? true:false;
 
                         }) &&
-                            <MarkStyle />
+                            <MarkStyle className="have-stroke"/>
                     }
+                    { dayjs().format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM') && <MarkStyle className="current-set"/> }
                 </MonthItemStyle>
             ))}
         </DaysWrapStyle>

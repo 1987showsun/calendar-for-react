@@ -32,6 +32,9 @@ export const MarkStyle = styled.span`
     margin-left: 7px;
     border-radius: 10px;
     background: #ccc;
+    &.have-stroke{
+        background-color: #f36;
+    }
 `;
 
 export const YearItemStyle = styled.div`
@@ -53,16 +56,12 @@ export const YearItemStyle = styled.div`
     &:nth-last-child(-n+5){
         border-bottom: 0;
     }
-    &[data-active="true"]{
+    &[data-selected="true"]{
         color: ${props => props.color!=undefined? props.color: '#1d79fc'};
-        &:after{
-            content: "";
-            width: 10px;
-            height: 100%;
+    }
+    &[data-current="true"]{
+        .current-set{
             background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
-            position: absolute;
-            top: 0px;
-            left: 0px;
         }
     }
 `;
@@ -89,16 +88,12 @@ export const MonthItemStyle = styled.div`
     &:hover{
         background-color: #eee;
     }
-    &[data-active="true"]{
+    &[data-selected="true"]{
         color: ${props => props.color!=undefined? props.color: '#1d79fc'};
-        &:after{
-            content: "";
-            width: 10px;
-            height: 100%;
+    }
+    &[data-current="true"]{
+        .current-set{
             background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
-            position: absolute;
-            top: 0px;
-            left: 0px;
         }
     }
 `;
