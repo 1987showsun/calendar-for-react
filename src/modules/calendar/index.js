@@ -28,6 +28,7 @@ const garbled = (len = 16) => {
 };
 
 const Index = ({
+  color    = "#3699ff",
   mode     = [],
   stroks   = [],
   local    = 'zh',
@@ -62,17 +63,20 @@ const Index = ({
     }
   };
 
-  const handleStrok = ( formObj ) => {
-    let stroks = [];
-    if( stateFormType=='add' ){
+  const handleStrok = ( formObj, actionType ) => {
+    let stroks   = [];
+    let funcType = actionType==undefined? stateFormType:actionType;
+    if( funcType=='add' ){
       stroks = [...stateStroks, { ...formObj, strok_id: garbled(128) }];
-    }else if( stateFormType=='update' ){
+    }else if( funcType=='update' ){
       stroks = stateStroks.map( item => ( item.strok_id==formObj.strok_id? formObj:item));
+    }else if( funcType=='delete' ){
+      stroks = stateStroks.filter( item => item.strok_id!=formObj.strok_id )
     }
     onChange({
-      actionType      : stateFormType,
-      [stateFormType] : formObj,
-      stroks          : stroks
+      actionType : funcType,
+      [funcType] : formObj,
+      stroks     : stroks
     });
     setStroks(stroks);
     setPopupDisplay(false);
@@ -90,6 +94,7 @@ const Index = ({
     <>
       <CalendarWrapStyle>
         <Header
+          propsColor            = {color}
           propsToday            = {today}
           propsRangeYear        = {stateRangeYear}
           propsCurrentYear      = {stateCurrentYear}
@@ -109,6 +114,7 @@ const Index = ({
           onHandleContainerType = {(type) => setContainerType(type)}
         />
         <Container 
+          propsColor            = {color}
           propsLocal            = {local}
           propsToday            = {today}
           propsStrokes          = {stateStroks}
@@ -140,8 +146,14 @@ const Index = ({
       >
         <Form 
           mode               = { mode }
+          actionType         = { stateFormType }
           defaultStrok       = { stateSelectedStrok }
+          onHandleCancel     = { () => {
+            setPopupDisplay(false);
+            setSelectedStrok({});
+          }}
           onHandleSubmit     = { handleStrok.bind(this) }
+          onHandleDelete     = { selectItem =>  handleStrok(selectItem, 'delete') }
         />
       </Popup>
     </>

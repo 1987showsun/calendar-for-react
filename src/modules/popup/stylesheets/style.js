@@ -38,7 +38,7 @@ export const PopupContainer = styled.div`
          props.height!=undefined ? css`
             max-height: ${`${props.height}%`};
          `: css`
-            max-height: 50%;
+            max-height: 80%;
          `
    }
    overflow: auto;

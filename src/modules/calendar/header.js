@@ -15,7 +15,7 @@ import {
 } from "./style/header";
 
 const Header = ({
-    propsToday            = [],
+    propsColor            = "",
     propsRangeYear        = [],
     propsCurrentYear      = 0,
     propsCurrentMonth     = 0,
@@ -66,18 +66,18 @@ const Header = ({
                 />
             </HeaderItemStyle>
             <HeaderItemStyle>
-                <HeaderActionBtn onClick={onHandleContainerType.bind(this,'year')} data-active={propsContainerType=="year"} className="type-btn-action">Year</HeaderActionBtn>
-                <HeaderActionBtn onClick={onHandleContainerType.bind(this,'month')} data-active={propsContainerType=="month"} className="type-btn-action">Month</HeaderActionBtn>
-                <HeaderActionBtn onClick={onHandleContainerType.bind(this,'date')} data-active={propsContainerType=="date"} className="type-btn-action">Day</HeaderActionBtn>
-                <HeaderActionBtn onClick={onHandleSetToday.bind(this)} className="today-btn">Today</HeaderActionBtn>
-                <HeaderActionBtn onClick={onHandleOpenPopup.bind(this)}>Add Stroke</HeaderActionBtn>
+                <HeaderActionBtn propsColor={propsColor} onClick={onHandleContainerType.bind(this,'year')} data-active={propsContainerType=="year"} className="type-btn-action">Year</HeaderActionBtn>
+                <HeaderActionBtn propsColor={propsColor} onClick={onHandleContainerType.bind(this,'month')} data-active={propsContainerType=="month"} className="type-btn-action">Month</HeaderActionBtn>
+                <HeaderActionBtn propsColor={propsColor} onClick={onHandleContainerType.bind(this,'date')} data-active={propsContainerType=="date"} className="type-btn-action">Day</HeaderActionBtn>
+                <HeaderActionBtn propsColor={propsColor} onClick={onHandleSetToday.bind(this)} className="today-btn">Today</HeaderActionBtn>
+                <HeaderActionBtn propsColor={propsColor} onClick={onHandleOpenPopup.bind(this)}>Add Stroke</HeaderActionBtn>
             </HeaderItemStyle>
         </HeaderWrapStyle>
     );
 }
 
 Header.propTypes = {
-    propsToday            : PropTypes.array,
+    propsColor            : PropTypes.string,
     propsRangeYear        : PropTypes.array,
     propsCurrentYear      : PropTypes.number,
     propsCurrentMonth     : PropTypes.number, 

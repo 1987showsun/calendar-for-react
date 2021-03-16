@@ -72,13 +72,13 @@ export const HeaderActionBtn = styled.button`
             margin-right: 5px;
         }
         &[data-active="true"]{
-            background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+            background-color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
             color: #fff;
         }
     }
     &.today-btn{
         margin-right: 5px;
         color: #fff;
-        background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+        background-color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
     }
 `;

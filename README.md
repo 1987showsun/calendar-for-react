@@ -28,6 +28,7 @@
   import Calendar from 'react-stroks-calendar';
 
   <Calendar
+    color    = "#3699ff"
     mode     = {["date","time"]}
     stroks   = {strokslist}
     local    = "en"
@@ -38,6 +39,7 @@
 ## Api
 | Api                 | type              | default | method                                           |
 | ------------------- | ----------------- | ------- | ------------------------------------------------ |
+| color               | string            | #3699ff | main color                                       |
 | mode                | Array             | date    | form datePicker status: date, time               | 
 | stroks              | Array             | null    | 行程列表                                          |
 | local               | string            | zh      | 語言：zh (華語) / en (英文)                        |

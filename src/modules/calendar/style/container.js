@@ -57,11 +57,11 @@ export const YearItemStyle = styled.div`
         border-bottom: 0;
     }
     &[data-selected="true"]{
-        color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+        color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
     }
     &[data-current="true"]{
         .current-set{
-            background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+            background-color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
         }
     }
 `;
@@ -89,11 +89,11 @@ export const MonthItemStyle = styled.div`
         background-color: #eee;
     }
     &[data-selected="true"]{
-        color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+        color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
     }
     &[data-current="true"]{
         .current-set{
-            background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+            background-color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
         }
     }
 `;
@@ -115,16 +115,17 @@ export const DaysItemStyle = styled.div`
         border-bottom: 0;
     }
     &[data-active="true"]{
-        padding-left: 20px;
         .date-set{
-            color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+            color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
         }
         &:after{
             content: "";
-            width: 10px;
+            width: 100%;
             height: 100%;
-            background-color: ${props => props.color!=undefined? props.color: '#1d79fc'};
+            background-color: ${props => props.propsColor!=undefined? props.propsColor: '#1d79fc'};
+            opacity: .1;
             position: absolute;
+            z-index: 1;
             top: 0px;
             left: 0px;
         }
@@ -157,6 +158,8 @@ export const StrokeContainerStyle = styled.div`
     overflow: auto;
     padding: 5px;
     margin-right: -5px;
+    position: relative;
+    z-index: 2;
 `;
 
 export const DaysStrokeItem = styled.div`
@@ -164,7 +167,8 @@ export const DaysStrokeItem = styled.div`
     display: flex;
     background: #fff;
     padding: 6px;
-    box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.1);
     align-items: center;
     margin-bottom: 7px;
     border-radius: 5px;
@@ -179,8 +183,8 @@ export const DaysStrokeItem = styled.div`
 `;
 
 export const StrokeSort = styled.div`
-    min-width: 20px;
-    min-height: 20px;
+    min-width: 17px;
+    min-height: 17px;
     margin-right: 5px;
     border-radius: 100px;
     background: #666;
@@ -197,6 +201,6 @@ export const StrokeTitle = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1em;
+    font-size: .9em;
     line-height: 1em;
 `;

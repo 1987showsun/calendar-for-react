@@ -33,8 +33,11 @@ const initalForm = {
 
 const Index = ({
     mode           = [],
+    actionType     = "add",
     defaultStrok   = {},
-    onHandleSubmit = () => {}
+    onHandleCancel = () => {},
+    onHandleSubmit = () => {},
+    onHandleDelete = () => {}
 }) => {
     const required = [ 'start', 'end', 'title' ];
     const [ stateRequired, setRequired ] = useState([]);
@@ -50,7 +53,10 @@ const Index = ({
         e.preventDefault();
         const mergeForm = { ...stateForm, start: stateStart, end: stateEnd };
         const checkRequired = required.filter( key => key=='tags'? mergeForm[key].length==0:String(mergeForm[key]).trim()=="");
-        if( checkRequired.length==0 ){
+        if( stateStart>stateEnd ){
+            checkRequired.push('start','end');
+        }
+        if( stateStart<stateEnd && checkRequired.length==0 ){
             onHandleSubmit(mergeForm);
         }
         setRequired(checkRequired);
@@ -76,7 +82,7 @@ const Index = ({
                     <DatePicker 
                         mode         = {mode}
                         defaultValue = {start}
-                        required     = {required.includes('start')}
+                        required     = {stateRequired.includes('start')}
                         onChange     = { date => setStart(date.ms)}
                     />
                 </FormItemsContainer>
@@ -88,7 +94,7 @@ const Index = ({
                     <DatePicker 
                         mode         = {mode}
                         defaultValue = {end}
-                        required     = {required.includes('end')}
+                        required     = {stateRequired.includes('end')}
                         onChange     = { date => setEnd(date.ms)}
                     />
                 </FormItemsContainer>
@@ -146,8 +152,10 @@ const Index = ({
                     />
                 </FormItemsContainer>
             </FormItemsStyle>
-            <FormItemsStyle>
-                <button>Add Stroke</button>
+            <FormItemsStyle className="form-action">
+                <button className="cancel" type="button" onClick={onHandleCancel.bind(this)}>Cancel</button>
+                <button className="submit" type="submit">{ actionType=='add'? 'Add':'Update' } Stroke</button>
+                { actionType=='update' && <button className="delete" type="button" onClick={onHandleDelete.bind(this, stateForm)}>Delete Stroke</button> }
             </FormItemsStyle>
         </FormWrapStyle>
     );
@@ -155,8 +163,11 @@ const Index = ({
 
 Index.prototype = {
     mode           : PropTypes.array,
+    actionType     : PropTypes.string,
     defaultStrok   : PropTypes.object,
-    onHandleSubmit : PropTypes.func
+    onHandleCancel : PropTypes.func,
+    onHandleSubmit : PropTypes.func,
+    onHandleDelete : PropTypes.func
 }
 
 export default Index;

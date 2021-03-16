@@ -23,6 +23,7 @@ import {
 } from "./style/container";
 
 const YearContainer = ({
+    propsColor         = "",
     propsCurrentYear   = 0,
     propsStrokes       = [],
     propsRangeYear     = [],
@@ -39,6 +40,7 @@ const YearContainer = ({
         return yearArray.map(item => (
             <YearItemStyle  
                 key              = {item}
+                propsColor       = {propsColor}
                 onClick          = {onHandleSetYear.bind(this, item)}
                 data-selected    = {dayjs(`${propsCurrentYear}`).format('YYYY')===String(item)}
                 data-current     = {dayjs().format('YYYY')===String(item)}
@@ -63,6 +65,7 @@ const YearContainer = ({
 }
 
 const MonthContainer = ({
+    propsColor         = "",
     propsStrokes       = [],
     propsCurrentYear   = 0,
     propsCurrentMonth  = 0,
@@ -79,6 +82,7 @@ const MonthContainer = ({
             { Month['en'].map((item, i) => (
                 <MonthItemStyle 
                     key              = {item}
+                    propsColor       = {propsColor}
                     data-selected    = {dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
                     data-current     = {dayjs().format('YYYY/MM')===dayjs(`${propsCurrentYear}/${i+1}`).format('YYYY/MM')}
                     onClick          = {onHandleSetMonth.bind(this, i+1)}
@@ -100,6 +104,7 @@ const MonthContainer = ({
 }
 
 const DateContainer = ({
+    propsColor             = "",
     propsStrokes           = [],
     propsCurrentYear       = 0,
     propsCurrentMonth      = 0,
@@ -137,6 +142,7 @@ const DateContainer = ({
             return (
                 <DaysItemStyle 
                     key         = {item}
+                    propsColor  = {propsColor}
                     data-active = {dayjs().format('YYYY/MM/DD')===item}
                     data-current= {dayjs(`${propsCurrentYear}/${propsCurrentMonth}`).format('YYYY/MM')===dayjs(item).format('YYYY/MM')}
                 >
@@ -198,6 +204,7 @@ const DayContainer = ({
 }
 
 const Container = ({
+    propsColor            = "",
     propsLocal            = "zh",
     propsToday            = [],
     propsStrokes          = [],
@@ -216,6 +223,7 @@ const Container = ({
             case "year":
                 return (
                     <YearContainer 
+                        propsColor             = {propsColor}
                         propsStrokes           = {stateStroks}
                         propsRangeYear         = {propsRangeYear}
                         propsCurrentYear       = {propsCurrentYear}
@@ -227,6 +235,7 @@ const Container = ({
             case "month":
                 return (
                     <MonthContainer 
+                        propsColor             = {propsColor}
                         propsStrokes           = {stateStroks}
                         propsCurrentYear       = {propsCurrentYear}
                         propsCurrentMonth      = {propsCurrentMonth}
@@ -241,6 +250,7 @@ const Container = ({
                             propsLocal             = {propsLocal}
                         />
                         <DateContainer
+                            propsColor             = {propsColor}
                             propsToday             = {propsToday}
                             propsStrokes           = {stateStroks}
                             propsCurrentYear       = {propsCurrentYear}
@@ -264,6 +274,7 @@ const Container = ({
 }
 
 Container.propTypes = {
+    propsColor            : PropTypes.string,
     propsToday            : PropTypes.array,
     propsStrokes          : PropTypes.array,
     propsRangeYear        : PropTypes.array,

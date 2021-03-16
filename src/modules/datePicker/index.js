@@ -18,6 +18,7 @@ import {
 
 const Index = ({
     mode         = [],
+    required     = [],
     defaultValue = "",
     disabledTime = "",
     onChange     = () => {}
@@ -96,8 +97,9 @@ const Index = ({
             onBlur    = {() => setDisplay(false)}
         >
             <DatetimeStyle 
-                className = "show-date"
-                onClick   = {() => setDisplay(stateDisplay? false:true)}
+                className      = "show-date"
+                data-required  = {required}
+                onClick        = {() => setDisplay(stateDisplay? false:true)}
             >
                 {showDatetime()}
             </DatetimeStyle>
@@ -129,6 +131,7 @@ const Index = ({
 }
 
 Index.prototype = {
+    required    : PropTypes.bool,
     mode        : PropTypes.array,
     defaultValue: PropTypes.string,
     disabledTime: PropTypes.string,

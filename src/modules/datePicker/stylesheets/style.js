@@ -45,6 +45,9 @@ export const DatetimeStyle = styled.div`
             margin-right: 0px;
         }
     }
+    &[data-required=true]{
+        border-color: red;
+    }
 `;
 
 export const CalendarWrapStyle = styled.div`

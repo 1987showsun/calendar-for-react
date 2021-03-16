@@ -31,6 +31,26 @@ export const FormItemsStyle = styled.div`
     >div{
         display: inline-flex;
     }
+    &.form-action{
+        button{
+            color: #fff;
+            margin-right: 10px;
+            cursor: pointer;
+            &:last-child{
+                margin-right: 0px;
+            }
+            &.cancel{
+                background-color: #e4e6ef;
+                color: #3f4254;
+            }
+            &.submit{
+                background-color: #3699ff;
+            }
+            &.delete{
+                background-color: #f64e60;
+            }
+        }
+    }
 `;
 
 export const FormItemsLabel = styled.div`

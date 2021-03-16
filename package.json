@@ -1,6 +1,6 @@
 {
   "name": "react-stroks-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "commonjs/index.js",
   "description": "React stroks calendar",
   "author": "Sun",
@@ -9,7 +9,7 @@
     "start": "NODE_ENV=development webpack-dev-server --colors --inline --content-base --history-api-fallback",
     "dev": "NODE_ENV=development webpack-dev-server --colors --inline --content-base --history-api-fallback",
     "build": "NODE_ENV=development webpack --config webpack.config.js",
-    "commonjs": "NODE_MODE=common NODE_ENV=production webpack --config webpack.config.js"
+    "commonjs": "NODE_MODE=common NODE_ENV=production webpack --config webpack.config.js && npm publish"
   },
   "keywords": ["React", "stroks", "calendar", "stroks calendar", "react-calendar", "react calendar"],
   "dependencies": {
