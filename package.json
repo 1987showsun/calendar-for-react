@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-stroks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "commonjs/index.js",
   "url": "https://github.com/1987showsun/calendar-for-react",
   "description": "React stroks calendar",
