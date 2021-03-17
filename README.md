@@ -2,7 +2,7 @@
 
 ## NPM
 ```js
-  npm i react-stroks-calendar
+  npm i react-calendar-stroks
 ```
 
 ## Demo
@@ -25,7 +25,7 @@
 
 ## 使用方式
 ```js
-  import Calendar from 'react-stroks-calendar';
+  import Calendar from 'react-calendar-stroks';
 
   <Calendar
     color    = "#3699ff"

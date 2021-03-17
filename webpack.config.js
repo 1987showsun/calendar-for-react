@@ -23,7 +23,6 @@ const config = {
   entry: ['@babel/polyfill', NODE_MODE=="nomal"? "./src/index.js":"./index.js"],
   output: {
     path: path.resolve(__dirname, NODE_MODE=="nomal"? './docs':'./commonjs'),
-    library: "BrowserRouter",
     filename: './index.js',
     libraryTarget: NODE_MODE=="nomal"? "umd":"commonjs2"
   },
@@ -48,6 +47,12 @@ const config = {
       },
     ]
   },
+  resolve: {
+    alias: {
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+    }
+  },
   devServer: {
     compress: true,
     historyApiFallback   : true,
@@ -67,7 +72,21 @@ const config = {
     })
   ],
   externals: {
-    ...NODE_ENV=="development"? {}:{'react': 'commonjs react'},
+    ...NODE_ENV=="development"? {
+    }:{
+      "react": {
+        commonjs: "react",
+        commonjs2: "react",
+        amd: "React",
+        root: "React"
+      },
+      "react-dom": {
+        commonjs: "react-dom",
+        commonjs2: "react-dom",
+        amd: "ReactDOM",
+        root: "ReactDOM"
+      }
+    }
   }
 };
 
